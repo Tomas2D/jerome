@@ -1,4 +1,8 @@
+![ackee|Jerome](https://img.ack.ee/ackee/image/github/js)
+
 # Jerome
+
+> Localization module useful mainly for frontend development in Ackee.
 
 ## Usage
 
