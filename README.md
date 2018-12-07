@@ -1,5 +1,9 @@
 # Jerome
 
+## Installation
+
+`npm i -s @ackee/jerome`
+
 ## Usage
 
 All parts are independent, but best works all together. Don't forget that for correct usage of selectors your reducer have to be stored with `translate` key (as in example).
@@ -9,7 +13,8 @@ All parts are independent, but best works all together. Don't forget that for co
 ### `setLocale`
 
 ```js
-import { setLocale } from 'ackee-frontend-toolkit/es/modules/localization';
+import { setLocale } from '@ackee/jerome';
+
 
 dispatch(setLocale('cs'));
 ```
@@ -22,7 +27,7 @@ dispatch(setLocale('cs'));
 Reducer is actually reducer factory since you must provide default locale first.
 
 ```js
-import { reducer as translateFactory } from 'ackee-frontend-toolkit/es/modules/localization';
+import { reducer as translateFactory } from '@ackee/jerome';
 
 const translate = translateFactory('cs');
 
@@ -40,7 +45,7 @@ const appReducers = combineReducers({
 Select `translate` part of store.
 
 ```js
-import { translateSelector } from 'ackee-frontend-toolkit/es/modules/localization';
+import { translateSelector } from '@ackee/jerome';
 
 translateSelector(state); // { locale: 'cs' }
 
@@ -56,7 +61,7 @@ The saga has two purposes, both related to handling persistent storing of locale
 **Usage**
 
 ```js
-import { saga as localization } from 'ackee-frontend-toolkit/es/modules/localization';
+import { saga as localization } from '@ackee/jerome';
 
 const rootSaga = function* () {
     yield all([
@@ -133,7 +138,7 @@ import cs from 'react-intl/locale-data/cs';
 import cs_CZ from 'antd/lib/locale-provider/cs_CZ';
 import en_US from 'antd/lib/locale-provider/en_US';
 
-import { translatableHOC } from 'ackee-frontend-toolkit/es/modules/localization';
+import { translatableHOC } from '@ackee/jerome';
 
 addLocaleData([...cs]);
 
@@ -174,7 +179,7 @@ ReactDOM.render(<TranslatableComponent store={store} />, document.getElementById
 Used for persistent store of locale setting.
 
 ```js
-import { saveLocale } from 'ackee-frontend-toolkit/es/modules/localization';
+import { saveLocale } from '@ackee/jerome';
 
 saveLocale('cs');
 ```
@@ -184,20 +189,20 @@ saveLocale('cs');
 Used for getting locale setting from persistent storage.
 
 ```js
-import { loadLocale } from 'ackee-frontend-toolkit/es/modules/localization';
+import { loadLocale } from '@ackee/jerome';
 
 loadLocale(); // 'cs'
 ```
 
-### `LocalStorageHandlers`
+### `localStorageHandlers`
 
 Covers both utilities mentioned above.
 
 ```js
-import { LocalStorageHandlers } from 'ackee-frontend-toolkit/es/modules/localization';
+import { localStorageHandlers } from '@ackee/jerome';
 
-LocalStorageHandlers.saveLocale('en');
-LocalStorageHandlers.loadLocale(); // 'en'
+localStorageHandlers.saveLocale('en');
+localStorageHandlers.loadLocale(); // 'en'
 ```
 
 
