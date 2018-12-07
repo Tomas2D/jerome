@@ -1,5 +1,5 @@
-import { Locale, Action } from '../../types';
-import actionTypes from '../actionTypes';
+import { Locale, Action } from '../types';
+import actionTypes from './actionTypes';
 
 export function setLocale(locale: Locale): Action {
     return {
