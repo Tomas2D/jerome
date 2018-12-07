@@ -9,7 +9,7 @@
         "build": "npm run clean & npm run build:ts && npm run copy-styles",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "cross-env BABEL_ENV=development build-storybook -o build",
-        "lint": "eslint \"src/**/*.{ts,tsx}\"",
+        "lint": "tslint \"src/**/*.{ts,tsx}\"",
         "test": "BABEL_ENV=test jest",
         "copy-styles": "copyfiles --up 1 src/**/*.scss styles",
         "clean": "rm -r lib & rm -r styles & rm -r build",
@@ -86,6 +86,7 @@
         "tslint-config-ackee": "^0.2.1",
         "tslint-config-airbnb": "^5.11.1",
         "tslint-config-prettier": "^1.17.0",
+        "tslint-react": "^3.6.0",
         "typescript": "^3.1.5"
     },
     "jest": {

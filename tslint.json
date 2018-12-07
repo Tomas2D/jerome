@@ -2,13 +2,17 @@
     "defaultSeverity": "error",
     "extends": [
         "tslint-config-airbnb",
+        "tslint-react",
         "tslint-config-prettier"
     ],
     "jsRules": {},
     "rules": {
         "indent": [true, "spaces", 4],
         "object-shorthand-properties-first": false,
-
+        "import-name": false,
+        // This rule is here for now because of https://github.com/palantir/tslint-rseact/issues/120
+        "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
+        "jsx-boolean-value": ["never"]
     },
     "rulesDirectory": [],
     "linterOptions": {
