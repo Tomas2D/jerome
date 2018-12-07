@@ -1,4 +1,4 @@
-![ackee|Foolkit](https://img.ack.ee/ackee/image/github/js)
+![ackee|Jerome](https://img.ack.ee/ackee/image/github/js)
 
 # Jerome
 
