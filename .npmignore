@@ -1,0 +1,6 @@
+/src/
+/storybook-static/
+/build/
+Jenkinsfile
+*.story.*
+.storybook/

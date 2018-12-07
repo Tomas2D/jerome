@@ -1,0 +1,17 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint-config-airbnb",
+        "tslint-config-prettier"
+    ],
+    "jsRules": {},
+    "rules": {
+        "indent": [true, "spaces", 4],
+        "object-shorthand-properties-first": false,
+
+    },
+    "rulesDirectory": [],
+    "linterOptions": {
+		"exclude": ["**/node_modules/**"]
+	}
+}
