@@ -23,12 +23,12 @@ const messages = {
     cs: {
         foo: 'Ano, ja jsem foo',
         'bar.baz': 'Ne, ja jsem bar baz',
-        'text': 'Čus, já jsem volitelný text',
+        text: 'Čus, já jsem volitelný text',
     },
     en: {
         foo: 'Yeah, I am foo',
         'bar.baz': 'No, I am bar baz',
-        'text': 'Hello, I am custom text',
+        text: 'Hello, I am custom text',
     },
 };
 
@@ -59,18 +59,20 @@ interface Props {
 
 const ContentComponent: React.SFC<Props> = ({ locale, text }) => (
     <div>
-        {['cs', 'en'].map(lang => (
-            <div key={lang}>
-                {lang}{' '}
-                <input
-                    type="radio"
-                    name="locale"
-                    value={lang}
-                    checked={lang === locale}
-                    onChange={localeChangeHandler}
-                />
-            </div>
-        ))}
+        {
+            ['cs', 'en'].map(lang => (
+                <div key={lang}>
+                    {lang}{' '}
+                    <input
+                        type="radio"
+                        name="locale"
+                        value={lang}
+                        checked={lang === locale}
+                        onChange={localeChangeHandler}
+                    />
+                </div>
+            ))
+        }
         <Pagination defaultCurrent={1} total={50} showSizeChanger />
         <h1>
             <FormattedMessage id="foo" />

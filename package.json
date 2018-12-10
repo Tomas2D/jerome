@@ -7,7 +7,7 @@
     "scripts": {
         "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
         "build:types": "tsc --project tsconfig.types.json --emitDeclarationOnly",
-        "build": "npm run type-check && npm run && npm run build:js && npm run build:types",
+        "build": "npm run type-check && npm run build:js && npm run build:types",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "cross-env BABEL_ENV=development build-storybook -o build",
         "lint": "tslint \"src/**/*.{ts,tsx}\"",
