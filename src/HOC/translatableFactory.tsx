@@ -17,9 +17,9 @@ interface WrappedProps extends LocaleState {
 const translatableFactory = (
     intlLocaleData: LocaleData<IntlLocaleData>,
     antdLocaleData: LocaleData<AntdLocaleData>,
-) => {
+): any => {
     return (TranslatableComponent: React.ComponentType<WrappedProps>) => {
-        class Translatable extends Component<WrappedProps, object> {
+        class Translatable extends Component<WrappedProps> {
             static displayName = `Translatable(${getDisplayName(TranslatableComponent)})`;
 
             static propTypes = {
