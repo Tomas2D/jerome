@@ -14,7 +14,8 @@
         "test": "BABEL_ENV=test jest",
         "clean": "rm -r lib",
         "type-check": "tsc --noEmit",
-        "type-check:watch": "npm run type-check -- --watch"
+        "type-check:watch": "npm run type-check -- --watch",
+        "start": "npm run build && onchange 'src/**/*.{ts,tsx} -- npm run build"
     },
     "author": "Lukáš Horák <lukas.horak@ackee.cz>",
     "license": "MIT",
@@ -71,6 +72,7 @@
         "less": "^3.8.1",
         "less-loader": "^4.1.0",
         "node-sass": "^4.9.3",
+        "onchange": "^5.2.0",
         "prettier-config-ackee": "0.0.5",
         "prop-types": "^15.6.0",
         "react": "^16.0.0",
