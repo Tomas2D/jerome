@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - 8
+script: npm run prepublish
+deploy:
+  provider: npm
+  email: ackeedevelopment@gmail.com
+  skip_cleanup: true
+  api_key:
+    secure: lI/V9pzhV7dM2hULb3tbQLKyNRljUrq6WqnPHzNupYJ+aA8HSdo2102aBh3Y4XK9Mtj7u0AAweJujAUESuuBJMVtCgy9pv/YyFlYIntcpDQQ/1NXpqtL20iEQ2dZZyRkNXpUHN/8I0HZ2g1Sg+DzJ1eOpwKG0G0emrb7vVV+IHaTCxQwi3pqPySYRMj61N0CanLOkCeYi2CdtiCY2GbQoaKKHwpfwSZczkh1s97RV2V3YImSOriwi27qXzzwtFWJlFtf9/FbPXth6rO+iUSeSzXyutMYT6CGvw/hTBoIsM1IGGoPFezA6M4jtxkTluUduvzIH0XtPqLnhXLei8R4ofIp0b6YjXtXorpXVoAlxiyD4qX3I0ObrQReiwfnbhVxM1d07ngg77PwLDAk4w62lNkVCSXcUv1hhYFTsgZ5vLxB5Q80GUEAy3xBHB4Jjqgx7yIfb+McUhnwLmSaAI9EPjUJyE0BtbXIMy3H6c6EVVjpB/hDEBdQ30TOOHjXsPgeChbsIGqX84FcrdiF6CZL5/hqjzxULFwJelq/r3zakxca2H8X/UbpLKfr6XIGQsCikt/aGIIwpxi4qhOZvnry6DdF0ix9hB9QpGEuaLicCLOXcH0JKkzY9mw2BQ9yKoU0Jw9iiWYu+h0iqiW7QXO6i9zyHMQaMZdeLUApgBUQPqM=
+  on:
+    tags: true
+    repo: AckeeCZ/jerome
