@@ -7,12 +7,12 @@
     "scripts": {
         "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
         "build:types": "tsc --project tsconfig.types.json --emitDeclarationOnly",
-        "build": "npm run type-check && npm run build:js && npm run build:types",
+        "build": "npm run clean && npm run type-check && npm run build:js && npm run build:types",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "cross-env BABEL_ENV=development build-storybook -o build",
         "lint": "tslint \"src/**/*.{ts,tsx}\"",
         "test": "BABEL_ENV=test jest",
-        "clean": "rm -r lib",
+        "clean": "rm -rf lib",
         "type-check": "tsc --noEmit",
         "type-check:watch": "npm run type-check -- --watch",
         "start": "npm run build && onchange 'src/**/*.{ts,tsx} -- npm run build"
@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "antd": "^3.9.2",
+        "localforage": "^1.7.3",
         "react-display-name": "^0.2.4",
         "utility-types": "^2.1.0"
     },
