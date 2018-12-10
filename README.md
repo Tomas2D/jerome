@@ -59,7 +59,7 @@ translateSelector(state); // { locale: 'cs' }
 
 The saga has two purposes, both related to handling persistent storing of locale. 
 
-* It saves locale on every `SET_LOCALE` action into the persistent storage. Second
+* It saves locale on every `SET_LOCALE` action into the persistent storage.
 * It loads locale from persistent storage when app load and set it up.
 
 **Usage**
@@ -86,6 +86,22 @@ function configureStore(initialState) {
     return store;
 }
 ```
+
+- ### `getIntl`
+    The `getIntl` saga returns an intl object that exactly corresponds to the [`intlShape`](https://github.com/yahoo/react-intl/wiki/API#intlshape).
+
+    #### Example
+    ```js
+    import { getIntl } from '@ackee/jerome';
+
+    function* mySaga() {
+        const intl = yield getIntl();
+
+        const translatedMessage = intl.formatMessage({
+            id: 'hello'
+        });
+    }
+    ```
 
 
 ## `translatable` HOC
