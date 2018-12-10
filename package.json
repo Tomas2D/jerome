@@ -1,6 +1,6 @@
 {
     "name": "@ackee/jerome",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Equipment for localizations at React-Redux-ReduxSaga stack",
     "main": "lib/index.js",
     "module": "es/index.js",
@@ -95,5 +95,8 @@
             "/lib"
         ],
         "setupTestFrameworkScriptFile": "./configure-jest.js"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
