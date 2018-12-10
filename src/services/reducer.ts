@@ -1,5 +1,5 @@
-import { LocaleState, Action } from '../../types';
-import types from '../actionTypes';
+import { LocaleState, Action } from '../types';
+import types from './actionTypes';
 
 export default (locale: string) => (
     state: LocaleState = {

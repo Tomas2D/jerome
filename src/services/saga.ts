@@ -1,11 +1,9 @@
-import { Action } from '../../types';
-import { sagaEffects } from '../../dependencies';
+import { Action } from '../types';
+import { takeEvery, all, put } from 'redux-saga/effects';
 
-import { setLocale } from '../actions';
-import types from '../actionTypes';
-import { localStorageHandlers } from '../utilities';
-
-const { takeEvery, all, put } = sagaEffects;
+import { setLocale } from './actions';
+import types from './actionTypes';
+import { localStorageHandlers } from './utilities';
 
 function saveLocaleToLocalStorage(action: Action) {
     const { locale } = action;

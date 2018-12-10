@@ -18,4 +18,3 @@ export interface Action {
 export interface LocaleData<T = {}> {
     [locale: string]: object & T;
 }
-
