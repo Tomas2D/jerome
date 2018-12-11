@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
@@ -40,9 +40,15 @@ const translatableFactory = (
 
             render() {
                 const { locale } = this.props;
+                const intlProviderProps = {
+                    locale,
+                    key: locale,
+                    messages: intlLocaleData[locale],
+                    textComponent: Fragment,
+                };
 
                 return (
-                    <IntlProvider locale={locale} key={locale} messages={intlLocaleData[locale]}>
+                    <IntlProvider {...intlProviderProps}>
                         <LocaleProvider locale={antdLocaleData[locale]}>
                             <TranslatableComponent {...this.props} />
                         </LocaleProvider>
