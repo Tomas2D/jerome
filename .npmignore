@@ -4,3 +4,11 @@
 Jenkinsfile
 *.story.*
 .storybook/
+package-lock.json
+prettier.config.js
+yarn.lock
+.eslintrc.json
+.eslintignore
+.editorconfig
+babel.config.js
+.gitignore
