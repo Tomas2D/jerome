@@ -13,3 +13,12 @@ export function getLocale(): Action {
         type: actionTypes.GET_LOCALE,
     };
 }
+
+export const createIntlProvider = (payload = {}): Action => ({
+    type: actionTypes.CREATE_INTL_PROVIDER,
+    payload,
+});
+
+export const destroyIntlProvider = (): Action => ({
+    type: actionTypes.DESTROY_INTL_PROVIDER,
+});

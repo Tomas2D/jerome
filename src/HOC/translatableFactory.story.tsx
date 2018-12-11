@@ -40,7 +40,8 @@ const antdLocales = {
 const initialState = {
     translate: { locale: 'cs' },
 };
-const store = createStore((state = initialState, action) => {
+
+const store = createStore((state = initialState, action: any) => {
     if (action.type === 'CHANGE_LOCALE') {
         return {
             translate: { locale: action.locale },
@@ -50,7 +51,10 @@ const store = createStore((state = initialState, action) => {
 });
 
 const localeChangeHandler = (e: SyntheticEvent<{ value: string }>) =>
-    store.dispatch({ type: 'CHANGE_LOCALE', locale: e.currentTarget.value });
+    store.dispatch({
+        type: 'CHANGE_LOCALE',
+        locale: e.currentTarget.value,
+    });
 
 interface Props {
     locale: Locale;
@@ -59,20 +63,18 @@ interface Props {
 
 const ContentComponent: React.SFC<Props> = ({ locale, text }) => (
     <div>
-        {
-            ['cs', 'en'].map(lang => (
-                <div key={lang}>
-                    {lang}{' '}
-                    <input
-                        type="radio"
-                        name="locale"
-                        value={lang}
-                        checked={lang === locale}
-                        onChange={localeChangeHandler}
-                    />
-                </div>
-            ))
-        }
+        {['cs', 'en'].map(lang => (
+            <div key={lang}>
+                {lang}{' '}
+                <input
+                    type="radio"
+                    name="locale"
+                    value={lang}
+                    checked={lang === locale}
+                    onChange={localeChangeHandler}
+                />
+            </div>
+        ))}
         <Pagination defaultCurrent={1} total={50} showSizeChanger />
         <h1>
             <FormattedMessage id="foo" />

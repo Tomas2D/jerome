@@ -1,43 +1,69 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { connect} from 'react-redux';
-import { IntlProvider} from 'react-intl';
+import { connect } from 'react-redux';
+import { IntlProvider } from 'react-intl';
 import getDisplayName from 'react-display-name';
 import LocaleProvider, { Locale as AntdLocaleData } from 'antd/lib/locale-provider';
 
 import { LocaleData, LocaleState, State } from '../types';
 
 import { translateSelector } from '../services/selectors';
+import { createIntlProvider, destroyIntlProvider } from '../services/actions';
 
 interface WrappedProps extends LocaleState {
     [extraProps: string]: any;
 }
 
-const translatableFactory = (
-    intlLocaleData: LocaleData,
-    antdLocaleData: LocaleData<AntdLocaleData>,
-) => {
-    return (TranslatableComponent: React.SFC<WrappedProps>) => {
-        const Component: React.SFC<WrappedProps> = (props) => (
-            <IntlProvider
-                locale={props.locale}
-                key={props.locale}
-                messages={intlLocaleData[props.locale]}
-            >
-                <LocaleProvider locale={antdLocaleData[props.locale]}>
-                    <TranslatableComponent {...props} />
-                </LocaleProvider>
-            </IntlProvider>
-        );
+const translatableFactory = (intlLocaleData: LocaleData, antdLocaleData: LocaleData<AntdLocaleData>): any => {
+    return (TranslatableComponent: React.ComponentType<WrappedProps>) => {
+        class Translatable extends Component<WrappedProps> {
+            static displayName = `Translatable(${getDisplayName(TranslatableComponent)})`;
 
-        Component.displayName = `Translatable(${getDisplayName(
-            TranslatableComponent,
-        )})`;
-        Component.propTypes = {
-            locale: PropTypes.string.isRequired,
+            static propTypes = {
+                locale: PropTypes.string.isRequired,
+                createIntlProvider: PropTypes.func.isRequired,
+                destroyIntlProvider: PropTypes.func.isRequired,
+            };
+
+            componentDidMount() {
+                this.props.createIntlProvider({
+                    intlData: intlLocaleData,
+                });
+            }
+
+            componentWillUnmount() {
+                this.props.destroyIntlProvider();
+            }
+
+            render() {
+                const { locale } = this.props;
+                const intlProviderProps = {
+                    locale,
+                    key: locale,
+                    messages: intlLocaleData[locale],
+                    textComponent: Fragment,
+                };
+
+                return (
+                    <IntlProvider {...intlProviderProps}>
+                        <LocaleProvider locale={antdLocaleData[locale]}>
+                            <TranslatableComponent {...this.props} />
+                        </LocaleProvider>
+                    </IntlProvider>
+                );
+            }
+        }
+
+        const mapStateToProps = (state: State) => translateSelector(state);
+        const mapDispatchToProps = {
+            createIntlProvider,
+            destroyIntlProvider,
         };
 
-        return connect((state: State) => translateSelector(state))(Component);
+        return connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(Translatable);
     };
 };
 
