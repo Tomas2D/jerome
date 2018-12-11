@@ -5,7 +5,7 @@ import { IntlProvider } from 'react-intl';
 import getDisplayName from 'react-display-name';
 import LocaleProvider, { Locale as AntdLocaleData } from 'antd/lib/locale-provider';
 
-import { LocaleData, LocaleState, State, IntlLocaleData } from '../types';
+import { LocaleData, LocaleState, State } from '../types';
 
 import { translateSelector } from '../services/selectors';
 import { createIntlProvider, destroyIntlProvider } from '../services/actions';
@@ -14,10 +14,7 @@ interface WrappedProps extends LocaleState {
     [extraProps: string]: any;
 }
 
-const translatableFactory = (
-    intlLocaleData: LocaleData<IntlLocaleData>,
-    antdLocaleData: LocaleData<AntdLocaleData>,
-): any => {
+const translatableFactory = (intlLocaleData: LocaleData, antdLocaleData: LocaleData<AntdLocaleData>): any => {
     return (TranslatableComponent: React.ComponentType<WrappedProps>) => {
         class Translatable extends Component<WrappedProps> {
             static displayName = `Translatable(${getDisplayName(TranslatableComponent)})`;
