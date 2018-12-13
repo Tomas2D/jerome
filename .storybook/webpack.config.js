@@ -47,20 +47,20 @@ module.exports = {
                         options: {
                             prettierConfig: {
                                 parser: 'babylon'
-                            }
+                            },
+                            parser: 'typescript'
                         }
                     },
                 ],
                 enforce: 'pre',
                 include: [
-                    path.resolve(__dirname, '../stories'),
+                    path.resolve(__dirname, '../srcc'),
                 ]
             },
             {
                 test: /\.(ts|js)x?$/,
                 loaders: ['babel-loader'],
                 include: [
-                    path.resolve(__dirname, '../stories'),
                     path.resolve(__dirname, '../src'),
                 ]
             },
