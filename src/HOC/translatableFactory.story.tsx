@@ -95,7 +95,7 @@ ContentComponent.defaultProps = {
     text: null,
 };
 
-storiesOf('Modules|localization/translatable', module).add('simple', () => {
+storiesOf('HOC|translatable', module).add('simple', () => {
     const TranslatableComponent = translatable(messages, antdLocales)(ContentComponent);
     return (
         <Provider store={store}>
