@@ -28,8 +28,7 @@
     },
     "dependencies": {
         "localforage": "^1.7.3",
-        "react-display-name": "^0.2.4",
-        "utility-types": "^2.1.0"
+        "react-display-name": "^0.2.4"
     },
     "peerDependencies": {
         "antd": "^3.11.2",
