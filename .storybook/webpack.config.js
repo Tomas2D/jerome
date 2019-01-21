@@ -45,22 +45,22 @@ module.exports = {
                     {
                         loader: require.resolve('@storybook/addon-storysource/loader'),
                         options: {
+                            parser: 'typescript',
                             prettierConfig: {
                                 parser: 'babylon'
-                            }
+                            },
                         }
                     },
                 ],
                 enforce: 'pre',
                 include: [
-                    path.resolve(__dirname, '../stories'),
+                    path.resolve(__dirname, '../src'),
                 ]
             },
             {
                 test: /\.(ts|js)x?$/,
                 loaders: ['babel-loader'],
                 include: [
-                    path.resolve(__dirname, '../stories'),
                     path.resolve(__dirname, '../src'),
                 ]
             },
