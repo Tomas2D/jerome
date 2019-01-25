@@ -1,17 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connectWorker } from '@ackee/redux-worker/main';
 import { IntlProvider } from 'react-intl';
 import getDisplayName from 'react-display-name';
 import LocaleProvider, { Locale as AntdLocaleData } from 'antd/lib/locale-provider';
 
-import { LocaleData, LocaleState, State } from '../types';
+import { LocaleData, LocaleState } from '../types';
 
-import { translateSelector } from '../services/selectors';
 import { createIntlProvider, destroyIntlProvider } from '../services/actions';
+
+import { BRIDGE_ID } from '../constants';
 
 interface WrappedProps extends LocaleState {
     [extraProps: string]: any;
+}
+
+function Loader() {
+    return <div>Loading Translatable component...</div>;
 }
 
 const translatableFactory = (intlLocaleData: LocaleData, antdLocaleData: LocaleData<AntdLocaleData>): any => {
@@ -54,16 +59,12 @@ const translatableFactory = (intlLocaleData: LocaleData, antdLocaleData: LocaleD
             }
         }
 
-        const mapStateToProps = (state: State) => translateSelector(state);
         const mapDispatchToProps = {
             createIntlProvider,
             destroyIntlProvider,
         };
 
-        return connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(Translatable);
+        return connectWorker(BRIDGE_ID, mapDispatchToProps)(Translatable, Loader);
     };
 };
 
