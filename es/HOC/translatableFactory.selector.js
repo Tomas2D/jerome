@@ -1,0 +1,12 @@
+"use strict";
+
+var _worker = require("@ackee/redux-worker/worker");
+
+var _constants = require("../constants");
+
+var _selectors = require("../services/selectors");
+
+(0, _worker.registerSelector)(_constants.BRIDGE_ID, function (state) {
+  return (0, _selectors.translateSelector)(state);
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9IT0MvdHJhbnNsYXRhYmxlRmFjdG9yeS5zZWxlY3Rvci50cyJdLCJuYW1lcyI6WyJCUklER0VfSUQiLCJzdGF0ZSJdLCJtYXBwaW5ncyI6Ijs7QUFBQTs7QUFFQTs7QUFFQTs7QUFFQSw4QkFBaUJBLG9CQUFqQixFQUE0QixVQUFDQyxLQUFEO0FBQUEsU0FBa0Isa0NBQWtCQSxLQUFsQixDQUFsQjtBQUFBLENBQTVCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgcmVnaXN0ZXJTZWxlY3RvciB9IGZyb20gJ0BhY2tlZS9yZWR1eC13b3JrZXIvd29ya2VyJztcblxuaW1wb3J0IHsgQlJJREdFX0lEIH0gZnJvbSAnLi4vY29uc3RhbnRzJztcbmltcG9ydCB7IFN0YXRlIH0gZnJvbSAnLi4vdHlwZXMnO1xuaW1wb3J0IHsgdHJhbnNsYXRlU2VsZWN0b3IgfSBmcm9tICcuLi9zZXJ2aWNlcy9zZWxlY3RvcnMnO1xuXG5yZWdpc3RlclNlbGVjdG9yKEJSSURHRV9JRCwgKHN0YXRlOiBTdGF0ZSkgPT4gdHJhbnNsYXRlU2VsZWN0b3Ioc3RhdGUpKTtcbiJdfQ==
