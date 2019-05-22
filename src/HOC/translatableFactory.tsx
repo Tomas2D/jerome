@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import getDisplayName from 'react-display-name';
-import LocaleProvider, { Locale as AntdLocaleData } from 'antd/lib/locale-provider';
+import LocaleProvider, { Locale as AntdLocaleData } from 'antd/es/locale-provider';
 
 import { LocaleData, LocaleState, State } from '../types';
 

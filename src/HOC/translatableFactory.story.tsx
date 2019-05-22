@@ -5,8 +5,8 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { FormattedMessage, addLocaleData } from 'react-intl';
 import cs from 'react-intl/locale-data/cs';
-import cs_CZ from 'antd/lib/locale-provider/cs_CZ';
-import en_US from 'antd/lib/locale-provider/en_US';
+import cs_CZ from 'antd/es/locale-provider/cs_CZ';
+import en_US from 'antd/es/locale-provider/en_US';
 
 import { Pagination } from 'antd';
 
