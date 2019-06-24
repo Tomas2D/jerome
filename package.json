@@ -65,7 +65,7 @@
         "antd": "^3.16.x",
         "babel-jest": "^23.6.0",
         "babel-loader": "^8.0.4",
-        "babel-plugin-custom-import-path-transform": "^1.0.2",
+        "babel-plugin-custom-import-path-transform": "^1.0.3",
         "babel-polyfill": "^6.26.0",
         "changelog-it": "github:AckeeCZ/changelog-it",
         "cross-env": "^5.2.0",
