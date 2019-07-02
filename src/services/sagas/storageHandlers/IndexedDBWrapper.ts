@@ -1,8 +1,11 @@
-import { openDB } from 'idb';
+import { openDB as openDBReal } from 'idb';
+import openDBMock from './indexedDbMock';
 
 const DATABASE_NAME = '@ackee/jerome';
 const DATABASE_VERSION = 1;
 const DATABASE_STORE_NAME = 'keyvaluepairs';
+
+const openDB = typeof window !== 'undefined' && window.indexedDB ? openDBReal : openDBMock;
 
 const db = openDB(DATABASE_NAME, DATABASE_VERSION, {
     upgrade(nextDb: any) {
