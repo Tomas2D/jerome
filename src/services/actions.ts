@@ -22,3 +22,5 @@ export const createIntlProvider = (payload = {}): Action => ({
 export const destroyIntlProvider = (): Action => ({
     type: actionTypes.DESTROY_INTL_PROVIDER,
 });
+
+export { actionTypes };

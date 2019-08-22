@@ -154,6 +154,12 @@ import { getLocale } from '@ackee/jerome';
 dispatch(getLocale());
 ```
 
+#### Action types
+
+```js
+import { actionTypes } from '@ackee/jerome'
+```
+
 -----
 
 ### Reducer
