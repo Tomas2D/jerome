@@ -39,7 +39,6 @@ const translatableFactory = (intlLocaleData: LocaleData, antdLocaleData: LocaleD
                 const { locale } = this.props;
                 const intlProviderProps = {
                     locale,
-                    key: locale,
                     messages: intlLocaleData[locale],
                     textComponent: Fragment,
                 };

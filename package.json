@@ -83,7 +83,7 @@
         "prop-types": "15.7.x",
         "react": "16.8.x",
         "react-dom": "16.8.x",
-        "react-intl": "2.8.x",
+        "react-intl": "^3.1.11",
         "react-redux": "7.x",
         "redux": "4.x",
         "redux-mock-store": "1.5.x",
