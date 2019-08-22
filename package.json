@@ -13,6 +13,7 @@
         "storybook": "rm -rf build && start-storybook -p 6007",
         "build-storybook": "cross-env BABEL_ENV=development build-storybook -o build",
         "lint": "tslint \"src/**/*.{ts,tsx}\"",
+        "prepare": "npm run build",
         "test": "BABEL_ENV=test jest",
         "clean": "rm -rf lib es",
         "type-check": "tsc --noEmit",
