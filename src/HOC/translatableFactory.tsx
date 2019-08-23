@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import getDisplayName from 'react-display-name';
-import LocaleProvider, { Locale as AntdLocaleData } from 'antd/es/locale-provider';
+import AntdLocaleProvider, { Locale as AntdLocaleData } from 'antd/es/locale-provider';
 
 import { LocaleData, LocaleState, State } from '../types';
 
@@ -14,7 +14,7 @@ interface WrappedProps extends LocaleState {
     [extraProps: string]: any;
 }
 
-const translatableFactory = (intlLocaleData: LocaleData, antdLocaleData: LocaleData<AntdLocaleData>): any => {
+const translatableFactory = (intlLocaleData: LocaleData, antdLocaleData?: LocaleData<AntdLocaleData>): any => {
     return (TranslatableComponent: React.ComponentType<WrappedProps>) => {
         class Translatable extends Component<WrappedProps> {
             static displayName = `Translatable(${getDisplayName(TranslatableComponent)})`;
@@ -41,10 +41,12 @@ const translatableFactory = (intlLocaleData: LocaleData, antdLocaleData: LocaleD
                     locale,
                     messages: intlLocaleData[locale],
                 };
+                const LocaleProvider = antdLocaleData ? AntdLocaleProvider : React.Fragment;
+                const localeProviderProps = antdLocaleData ? { locale: antdLocaleData[locale] } : {};
 
                 return (
                     <IntlProvider {...intlProviderProps}>
-                        <LocaleProvider locale={antdLocaleData[locale]}>
+                        <LocaleProvider {...localeProviderProps}>
                             <TranslatableComponent {...this.props} />
                         </LocaleProvider>
                     </IntlProvider>
