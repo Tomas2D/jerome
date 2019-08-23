@@ -15,6 +15,7 @@ import { Locale } from '../types';
 import 'antd/es/pagination/style/index.less';
 
 import translatable from './translatableFactory';
+import translatableWithAntd from './translatableWithAntdFactory';
 
 if (!Intl.RelativeTimeFormat) {
     require('@formatjs/intl-relativetimeformat/polyfill');
@@ -94,11 +95,10 @@ ContentComponent.defaultProps = {
 
 storiesOf('HOC|translatable', module)
     .add('simple', () => {
-        const TranslatableComponent = translatable(messages, antdLocales)(ContentComponent);
+        const TranslatableComponent = translatable(messages)(ContentComponent);
         return (
             <Provider store={store}>
                 <TranslatableComponent>
-                    <Pagination defaultCurrent={1} total={50} showSizeChanger />
                     <h1>
                         <FormattedMessage id="foo" />
                     </h1>
@@ -118,12 +118,14 @@ storiesOf('HOC|translatable', module)
             </Provider>
         );
     })
-    .add('without antd locales', () => {
-        const TranslatableComponent = translatable(messages)(ContentComponent);
+    .add('with Antd', () => {
+        const TranslatableComponent = translatableWithAntd(messages, antdLocales)(ContentComponent);
         return (
             <Provider store={store}>
                 <TranslatableComponent>
-                    <p>Notice that no matter which language you select, component always use English</p>
+                    <p>
+                        <FormattedMessage id="foo" />
+                    </p>
                     <Pagination defaultCurrent={1} total={50} showSizeChanger />
                 </TranslatableComponent>
             </Provider>

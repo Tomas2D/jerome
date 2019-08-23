@@ -65,15 +65,14 @@ if (!Intl.RelativeTimeFormat) {
 
 ### HOC
 
-#### `translatable(intlLocaleData, antdLocaleData): (ContentComponent) => TranslatableContentComponent`
+![Important](./assets/alert-icon.png "Important note")
+To make HOCs works properly, you must have `react-intl` installed just once! So be sure your dependencies structure is flat.
 
-It's actually a translatable HOC factory function. It provides `reac-intl` and `antd` localization context, so you first have to provide localization messages and `antd` locale data.
+#### `translatableFactory(intlLocaleData): (ContentComponent) => TranslatableContentComponent`
 
-> ![Important](./assets/alert-icon.png "Important note")
-To make HOC works properly, you must have `react-intl` installed just once! So be sure your dependencies structure is flat.
+It provides `reac-intl` localization context, so you first have to provide localization messages to the factory that will return the actual HOC.
 
-_Arguments:_
-* `intlLocaleData`: object with messages keyed by locale name, eg.
+`intlLocaleData` - object with messages keyed by locale name, eg.
 
 
 ```js
@@ -89,31 +88,14 @@ const messages = {
 }
 ```
 
-* `intlLocaleData`: object with antd locales keyed by locale name. eg.
-
-```js
-import cs_CZ from 'antd/lib/locale-provider/cs_CZ';
-import en_US from 'antd/lib/locale-provider/en_US';
-
-const messages = {
-    cs: cs_CZ,
-    en: en_US,
-}
-```
-
-_Returns:_
-Function that receives `ContentComponent` and return it wrapped with [IntlProvider](https://github.com/yahoo/react-intl/wiki/Components#intlprovider) and set locale to that given from
+The factory returns function that receives `ContentComponent` and return it wrapped with [IntlProvider](https://github.com/yahoo/react-intl/wiki/Components#intlprovider) which receives locale from the
 `store.translate.locale` store path.
 
 _Example_
 
 ```jsx
 import { FormattedMessage, addLocaleData } from 'react-intl';
-
-import cs_CZ from 'antd/lib/locale-provider/cs_CZ';
-import en_US from 'antd/lib/locale-provider/en_US';
-
-import { translatableHOC } from '@ackee/jerome';
+import { translatableFactory } from '@ackee/jerome';
 
 const ContentComponent = () => (
     <div id="app">
@@ -129,6 +111,63 @@ const messages = {
         'bye.instant': 'Nashledanou',
         'bye.forever': 'Sbohem',
     },
+    en: {
+        hello: 'Hello',
+        'bye.instant': 'See you later',
+        'bye.forever': 'Goodbye',
+    },
+};
+
+const store = createStore((state = initialState) => ({
+    translate: { locale: 'cs' },
+}));
+
+TranslatableComponent = translatableFactory(messages)(ContentComponent);
+
+ReactDOM.render(<TranslatableComponent store={store} />, document.getElementById('app'));
+```
+
+#### `translatableWithAntdFactory(intlLocaleData, antdLocaleData): (ContentComponent) => TranslatableContentComponent`
+
+If you use [Ant design](https://ant.design/docs/react/introduce) components library, you can use this HOC, which extends the [`translatableFactory`](#translatablefactoryintllocaledata-contentcomponent--translatablecontentcomponent) to add `antd` localization context. Only difference (except the name) is that you have to provide `antLocaleData` as a second argument to the factory.
+
+`intlLocaleData` - object with antd locales keyed by locale name. eg.
+
+```js
+import cs_CZ from 'antd/lib/locale-provider/cs_CZ';
+import en_US from 'antd/lib/locale-provider/en_US';
+
+const messages = {
+    cs: cs_CZ,
+    en: en_US,
+}
+```
+
+Returns the same HOC as a [`translatableFactory`](#translatablefactoryintllocaledata-contentcomponent--translatablecontentcomponent), look at the usage example below.
+
+```jsx
+import { FormattedMessage, addLocaleData } from 'react-intl';
+
+import { Pagination } from 'antd';
+import cs_CZ from 'antd/lib/locale-provider/cs_CZ';
+import en_US from 'antd/lib/locale-provider/en_US';
+
+import { translatableWithAntdFactory } from '@ackee/jerome';
+
+const ContentComponent = () => (
+    <div id="app">
+        <h1><FormattedMessage id="hello" /></h1>
+        <Pagination defaultCurrent={1} total={50} showSizeChanger />
+    </div>
+);
+
+const messages = {
+    cs: {
+        hello: 'Cau',
+    },
+    en: {
+        hello: 'Hello',
+    },
 };
 
 const antdMessages = {
@@ -140,7 +179,7 @@ const store = createStore((state = initialState) => ({
     translate: { locale: 'cs' },
 }));
 
-TranslatableComponent = translatableHOC(messages, antdMessages)(ContentComponent);
+TranslatableComponent = translatableWithAntdFactory(messages, antdMessages)(ContentComponent);
 
 ReactDOM.render(<TranslatableComponent store={store} />, document.getElementById('app'));
 ```
