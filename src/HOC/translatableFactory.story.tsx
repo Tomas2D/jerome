@@ -3,8 +3,7 @@ import React, { SyntheticEvent } from 'react';
 import PropTypes from 'prop-types';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { FormattedMessage, addLocaleData, FormattedHTMLMessage, FormattedRelative } from 'react-intl';
-import cs from 'react-intl/locale-data/cs';
+import { FormattedMessage, FormattedHTMLMessage, FormattedRelativeTime } from 'react-intl';
 import cs_CZ from 'antd/es/locale-provider/cs_CZ';
 import en_US from 'antd/es/locale-provider/en_US';
 
@@ -17,7 +16,10 @@ import 'antd/es/pagination/style/index.less';
 
 import translatable from './translatableFactory';
 
-addLocaleData([...cs]);
+if (!Intl.RelativeTimeFormat) {
+    require('@formatjs/intl-relativetimeformat/polyfill');
+    require('@formatjs/intl-relativetimeformat/dist/locale-data/cs');
+}
 
 const messages = {
     cs: {
@@ -88,7 +90,7 @@ const ContentComponent: React.SFC<Props> = ({ locale, text }) => (
             <FormattedHTMLMessage id="htmlText" />
         </p>
         <p>
-            <FormattedRelative value={Date.now() - 20 * 60 * 1000} units="minute"/>
+            <FormattedRelativeTime value={-20} unit="minute"/>
         </p>
         <p>{text}</p>
     </div>

@@ -24,21 +24,42 @@
 
 ## Installation
 
-Using npm:
-
-```
-npm i -s @ackee/jerome
-```
-
 Using yarn:
 
-```
+```bash
 yarn add @ackee/jerome
+```
+
+Using npm:
+
+```bash
+npm i -s @ackee/jerome
 ```
 
 ## Usage
 
 All parts are independent, but best works all together. Don't forget that for correct usage of selectors your reducer have to be stored with `translate` key (as in example).
+
+### Used APIs
+
+Jerome uses `react-intl@3` which [relies on some native browser APIs](https://github.com/formatjs/react-intl/blob/master/docs/Upgrade-Guide.md#migrate-to-using-native-intl-apis) so if you're going to use components for plurals or relative time format, be sure that your minimal supported browsers implement those APIs or use polyfills as described bellow
+
+For polyfilling plurals, use [`intl-pluralrules`](https://www.npmjs.com/package/intl-pluralrules) package.
+
+```js
+if (!Intl.PluralRules) {
+  require('intl-pluralrules');
+}
+```
+
+For polyfilling plurals, use [`intl-relativetimeformat`](https://www.npmjs.com/package/@formatjs/intl-relativetimeformat) package.
+
+```js
+if (!Intl.RelativeTimeFormat) {
+  require('@formatjs/intl-relativetimeformat/polyfill');
+  require('@formatjs/intl-relativetimeformat/dist/locale-data/de'); // Add locale data for de
+}
+```
 
 ## API
 
@@ -49,7 +70,7 @@ All parts are independent, but best works all together. Don't forget that for co
 It's actually a translatable HOC factory function. It provides `reac-intl` and `antd` localization context, so you first have to provide localization messages and `antd` locale data.
 
 > ![Important](./assets/alert-icon.png "Important note")
-To make HOC works properly, you must have `react-intl` installed just once!
+To make HOC works properly, you must have `react-intl` installed just once! So be sure your dependencies structure is flat.
 
 _Arguments:_
 * `intlLocaleData`: object with messages keyed by locale name, eg.
@@ -84,21 +105,15 @@ _Returns:_
 Function that receives `ContentComponent` and return it wrapped with [IntlProvider](https://github.com/yahoo/react-intl/wiki/Components#intlprovider) and set locale to that given from
 `store.translate.locale` store path.
 
-> To make everything work properly you also need to set locale data using `addLocaleData` function from
-`react-intl` package. See the snippet below for example of how to do it.
-
 _Example_
 
 ```jsx
 import { FormattedMessage, addLocaleData } from 'react-intl';
-import cs from 'react-intl/locale-data/cs';
 
 import cs_CZ from 'antd/lib/locale-provider/cs_CZ';
 import en_US from 'antd/lib/locale-provider/en_US';
 
 import { translatableHOC } from '@ackee/jerome';
-
-addLocaleData([...cs]);
 
 const ContentComponent = () => (
     <div id="app">

@@ -31,6 +31,7 @@
         "url": "https://github.com/AckeeCZ/jerome"
     },
     "dependencies": {
+        "@formatjs/intl-relativetimeformat": "^2.8.1",
         "idb": "4.0.x",
         "react-display-name": "^0.2.4"
     },
