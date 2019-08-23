@@ -3,7 +3,7 @@ import React, { SyntheticEvent } from 'react';
 import PropTypes from 'prop-types';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { FormattedMessage, addLocaleData } from 'react-intl';
+import { FormattedMessage, addLocaleData, FormattedHTMLMessage, FormattedRelative } from 'react-intl';
 import cs from 'react-intl/locale-data/cs';
 import cs_CZ from 'antd/es/locale-provider/cs_CZ';
 import en_US from 'antd/es/locale-provider/en_US';
@@ -24,11 +24,13 @@ const messages = {
         foo: 'Ano, ja jsem foo',
         'bar.baz': 'Ne, ja jsem bar baz',
         text: 'Čus, já jsem volitelný text',
+        htmlText: 'Čus já jsem <a href="http://ackee.cz" target="_blank">odkaz</a>'
     },
     en: {
         foo: 'Yeah, I am foo',
         'bar.baz': 'No, I am bar baz',
         text: 'Hello, I am custom text',
+        htmlText: 'Hi i\'m <a href="http://ackee.de" target="_blank">link</a>'
     },
 };
 
@@ -82,6 +84,12 @@ const ContentComponent: React.SFC<Props> = ({ locale, text }) => (
         <h2>
             <FormattedMessage id="bar.baz" />
         </h2>
+        <p>
+            <FormattedHTMLMessage id="htmlText" />
+        </p>
+        <p>
+            <FormattedRelative value={Date.now() - 20 * 60 * 1000} units="minute"/>
+        </p>
         <p>{text}</p>
     </div>
 );
