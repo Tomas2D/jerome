@@ -1,6 +1,6 @@
 import { Action, Store } from '../../types';
 import { select, takeEvery, call, take, race } from 'redux-saga/effects';
-import { IntlProvider } from 'react-intl';
+import { createIntl, createIntlCache } from 'react-intl';
 
 import types from '../actionTypes';
 import { translateSelector } from '../selectors';
@@ -30,7 +30,8 @@ function* createIntlProvider() {
         messages: store.intlData[locale],
     };
 
-    const { intl } = new IntlProvider(intlConfig).getChildContext();
+    const cache = createIntlCache();
+    const intl = createIntl(intlConfig, cache);
 
     store.intl = intl;
 }
