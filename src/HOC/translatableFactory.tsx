@@ -1,20 +1,20 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import getDisplayName from 'react-display-name';
-import LocaleProvider, { Locale as AntdLocaleData } from 'antd/es/locale-provider';
 
 import { LocaleData, LocaleState, State } from '../types';
 
 import { translateSelector } from '../services/selectors';
 import { createIntlProvider, destroyIntlProvider } from '../services/actions';
 
-interface WrappedProps extends LocaleState {
+export interface WrappedProps extends LocaleState {
     [extraProps: string]: any;
+    locale: string;
 }
 
-const translatableFactory = (intlLocaleData: LocaleData, antdLocaleData: LocaleData<AntdLocaleData>): any => {
+const translatableFactory = (intlLocaleData: LocaleData): any => {
     return (TranslatableComponent: React.ComponentType<WrappedProps>) => {
         class Translatable extends Component<WrappedProps> {
             static displayName = `Translatable(${getDisplayName(TranslatableComponent)})`;
@@ -39,16 +39,12 @@ const translatableFactory = (intlLocaleData: LocaleData, antdLocaleData: LocaleD
                 const { locale } = this.props;
                 const intlProviderProps = {
                     locale,
-                    key: locale,
                     messages: intlLocaleData[locale],
-                    textComponent: Fragment,
                 };
 
                 return (
                     <IntlProvider {...intlProviderProps}>
-                        <LocaleProvider locale={antdLocaleData[locale]}>
-                            <TranslatableComponent {...this.props} />
-                        </LocaleProvider>
+                        <TranslatableComponent {...this.props} />
                     </IntlProvider>
                 );
             }

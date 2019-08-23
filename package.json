@@ -32,6 +32,7 @@
         "url": "https://github.com/AckeeCZ/jerome"
     },
     "dependencies": {
+        "@formatjs/intl-relativetimeformat": "^2.8.1",
         "idb": "4.0.x",
         "react-display-name": "^0.2.4"
     },
@@ -39,7 +40,7 @@
         "antd": "3.19.x",
         "prop-types": "15.7.x",
         "react": "16.8.x",
-        "react-intl": "2.8.x",
+        "react-intl": "^3.1.11",
         "react-redux": "7.0.x",
         "redux-saga": "1.0.x"
     },
@@ -59,7 +60,7 @@
         "@storybook/react": "^4.1.1",
         "@types/react": "^16.8.22",
         "@types/react-dom": "^16.8.4",
-        "@types/react-intl": "^2.3.18",
+        "@types/react-intl": "^3.0.0",
         "@types/react-redux": "^7.1.0",
         "@types/redux": "^3.6.0",
         "@types/storybook__react": "^3.0.9",
@@ -84,7 +85,7 @@
         "prop-types": "15.7.x",
         "react": "16.8.x",
         "react-dom": "16.8.x",
-        "react-intl": "2.8.x",
+        "react-intl": "^3.1.11",
         "react-redux": "7.x",
         "redux": "4.x",
         "redux-mock-store": "1.5.x",
