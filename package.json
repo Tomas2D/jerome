@@ -76,6 +76,7 @@
         "eslint": "5.10.x",
         "eslint-config-ackee": "0.9.x",
         "eslint-plugin-jest": "22.7.x",
+        "husky": "^3.0.5",
         "jest": "23.6.x",
         "less": "3.9.x",
         "less-loader": "4.1.x",
@@ -98,5 +99,10 @@
     },
     "publishConfig": {
         "access": "public"
+    },
+    "husky": {
+        "hooks": {
+            "pre-push": "npm run test"
+        }
     }
 }
