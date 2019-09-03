@@ -31,10 +31,7 @@ const reducerFactory = (languages: string|string[]) => {
                     locale: action.locale,
                 };
             case types.GET_LOCALE:
-                return {
-                    ...state,
-                    locale: state.locale,
-                };
+                return state;
             default:
                 return state;
         }
