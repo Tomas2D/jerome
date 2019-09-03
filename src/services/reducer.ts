@@ -3,7 +3,7 @@ import types from './actionTypes';
 
 import { isBrowserEnv } from '../config';
 
-const getInitialLanguage = (languages: string[]) => {
+const getInitialLanguage = (languages: string[]): string => {
     let language = languages[0];
     const lang = isBrowserEnv ? window.navigator.language : language;
     const langSplitted = lang.split('-')[0];
@@ -17,8 +17,8 @@ const getInitialLanguage = (languages: string[]) => {
     return language;
 };
 
-export const reducerFactory = (languages: string[]) => {
-    const language = getInitialLanguage(languages);
+const reducerFactory = (languages: string|string[]) => {
+    const language = Array.isArray(languages) ? getInitialLanguage(languages) : languages;
     const initialState: LocaleState = {
         locale: language,
     };
