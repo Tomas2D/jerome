@@ -76,6 +76,7 @@
         "eslint": "5.10.x",
         "eslint-config-ackee": "0.9.x",
         "eslint-plugin-jest": "22.7.x",
+        "husky": "^3.0.5",
         "jest": "23.6.x",
         "less": "3.9.x",
         "less-loader": "4.1.x",
@@ -90,21 +91,19 @@
         "redux": "4.x",
         "redux-mock-store": "1.5.x",
         "redux-saga": "1.0.x",
+        "ts-jest": "^24.0.2",
         "tslint-config-ackee": "^0.3.0",
         "tslint-config-airbnb": "^5.11.1",
         "tslint-config-prettier": "^1.18.0",
         "tslint-react": "^4.0.0",
         "typescript": "^3.5.2"
     },
-    "jest": {
-        "testPathIgnorePatterns": [
-            "/node_modules",
-            "/es",
-            "/lib"
-        ],
-        "setupTestFrameworkScriptFile": "./configure-jest.js"
-    },
     "publishConfig": {
         "access": "public"
+    },
+    "husky": {
+        "hooks": {
+            "pre-push": "npm run test"
+        }
     }
 }
