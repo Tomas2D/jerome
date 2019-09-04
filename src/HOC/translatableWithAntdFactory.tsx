@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LocaleProvider, { Locale as AntdLocaleData } from 'antd/es/locale-provider';
+import ConfigProvider, { Locale as AntdLocaleData } from 'antd/es/locale-provider';
 
 import { LocaleData } from '../types';
 
@@ -11,9 +11,9 @@ const translatableWithAntdFactory = (intlLocaleData: LocaleData, antdLocaleData:
 
     return (TranslatableComponent: React.ComponentType<WrappedProps>) => {
         const TranslatableWithAntd: React.StatelessComponent<WrappedProps> = props => (
-            <LocaleProvider locale={antdLocaleData[props.locale]}>
+            <ConfigProvider locale={antdLocaleData[props.locale]}>
                 <TranslatableComponent {...props} />
-            </LocaleProvider>
+            </ConfigProvider>
         );
 
         TranslatableWithAntd.propTypes = {
