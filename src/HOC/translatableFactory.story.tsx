@@ -4,18 +4,11 @@ import PropTypes from 'prop-types';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { FormattedMessage, FormattedHTMLMessage, FormattedRelativeTime } from 'react-intl';
-import cs_CZ from 'antd/es/locale-provider/cs_CZ';
-import en_US from 'antd/es/locale-provider/en_US';
-
-import { Pagination } from 'antd';
 
 import { storiesOf } from '@storybook/react';
 import { Locale } from '../types';
 
-import 'antd/es/pagination/style/index.less';
-
 import translatable from './translatableFactory';
-import translatableWithAntd from './translatableWithAntdFactory';
 
 if (!Intl.RelativeTimeFormat) {
     require('@formatjs/intl-relativetimeformat/polyfill');
@@ -35,11 +28,6 @@ const messages = {
         text: 'Hello, I am custom text',
         htmlText: 'Hi i\'m <a href="http://ackee.de" target="_blank">link</a>',
     },
-};
-
-const antdLocales = {
-    cs: cs_CZ,
-    en: en_US,
 };
 
 const initialState = {
@@ -114,19 +102,6 @@ storiesOf('HOC|translatable', module)
                     <p>
                         <FormattedMessage id="text" />
                     </p>
-                </TranslatableComponent>
-            </Provider>
-        );
-    })
-    .add('with Antd', () => {
-        const TranslatableComponent = translatableWithAntd(messages, antdLocales)(ContentComponent);
-        return (
-            <Provider store={store}>
-                <TranslatableComponent>
-                    <p>
-                        <FormattedMessage id="foo" />
-                    </p>
-                    <Pagination defaultCurrent={1} total={50} showSizeChanger />
                 </TranslatableComponent>
             </Provider>
         );
